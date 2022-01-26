@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+      <template id="view_products" name="views all products" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+          <link rel="stylesheet" href="/shopping_online/static/src/css/styles.css"/>
+            <!--search bar && nav-->
+            <div class="topnav">
+              <a class="active" href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#contact">Contact</a>
+              <form>
+                <input type="search" placeholder="Search.." id="search_products" name="search_products"/>
+              </form>
+            </div>
+            <!--midder-->
+            <div class="row">
+              <t t-foreach="products" t-as="product">
+                <div class="column" style="width: 33%;">
+                  <div class="card">
+                    <img t-att-src="'data:image/png;base64,%s' % to_text(product.picture)"/>
+                    <h1><t t-esc="product.name"/></h1>
+                    <p class="price"><t t-esc="product.price"/></p>
+                    <p><t t-esc="product.description"/></p>
+                    <p><button>Add to Cart</button></p>
+                  </div>
+                </div>
+              </t>
+            </div>
+        </xpath>
+      </template>
+    </data>
+</odoo>

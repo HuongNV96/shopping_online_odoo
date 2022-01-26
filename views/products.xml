@@ -1,0 +1,74 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="products_tree">
+      <field name="name">products tree</field>
+      <field name="model">products.shopping_online</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="barcode"/>
+            <field name="name"/>
+            <field name="number"/>
+            <field name="sales"/>
+            <field name="remaining"/>
+            <field name="price"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="products_form">
+      <field name="name">products form</field>
+      <field name="model">products.shopping_online</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="number"/>
+              <field name="price"/>
+              <field name="barcode" attrs="{'required': [('barcode','=', False)]}"/>
+            </group>
+            <group>
+              <field name="description"/>
+              <field name="picture"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model = "ir.actions.act_window" id = "add_products_action" >
+      <field name="name">Add Products</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">products.shopping_online</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p>Create a product</p>
+      </field>
+    </record>
+
+    <menuitem id = "shopping_root"
+              name = "Shopping Online"
+              sequence = "10"/>
+
+    <menuitem id = "products_root"
+              name = "Products"
+              parent = "shopping_root"
+              sequence = "10"/>
+
+    <menuitem id = "order_root"
+              name = "Order"
+              parent = "shopping_root"
+              sequence = "10"/>
+
+    <menuitem id = "add_products_root"
+              name = "Manager Products"
+              parent = "products_root"
+              action = "add_products_action"
+              sequence = "10"/>
+
+    <menuitem id = "find_products_root"
+              name = "Find Products"
+              parent = "products_root"
+              sequence = "10"/>
+  </data>
+</odoo>
